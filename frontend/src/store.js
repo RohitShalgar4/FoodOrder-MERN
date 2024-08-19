@@ -16,6 +16,7 @@ import {
     auth: authReducer,
     user: userReducer,
     forgotPassword: forgotPasswordReducer,
+    
 });
 
 const composeenhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
