@@ -15,6 +15,8 @@ import { loadUser } from "./actions/userAction";
 import Profile from "./components/users/Profile";
 import UpdateProfile from "./components/users/UpdateProfile";
 import ForgotPassword from "./components/users/ForgotPassword";
+import NewPassword from "./components/users/NewPassword";
+
 
 
 export default function App() {
@@ -39,6 +41,7 @@ export default function App() {
             <Route path="/users/me" element={<Profile />} />
             <Route path="/users/me/update" element={<UpdateProfile />} />
             <Route path="/users/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/users/resetPassword/:token" element={<NewPassword />} />
           </Routes>
         </div>
       <Footer />
