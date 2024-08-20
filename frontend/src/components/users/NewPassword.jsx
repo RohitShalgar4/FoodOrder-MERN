@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { clearErrors, resetPassword } from "../../actions/userAction";
 
 const NewPassword = () => {
+
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordCofirm] = useState("");
+
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const {error, success} = useSelector(
+    (state) => state.forgotPassword
+  );
+
+  const { token } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    if (success) {
+      alert.success("Password Updated Succesfully");
+      navigate("/users/login");
+    }
+  }, [dispatch, alert, error, success, navigate]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.set("password", password);
+    formData.set("passwordConfirm", passwordConfirm);
+
+    dispatch(resetPassword(token, formData));
+  };
+
   return (
     <>
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
-          <form className="shadow-lg">
+          <form className="shadow-lg" onSubmit={submitHandler}>
             <h1 className="mb-3">New Password</h1>
             <div className="form-group">
               <label htmlFor="password_field">Password</label>
@@ -13,7 +51,8 @@ const NewPassword = () => {
                 type="password"
                 id="password_field"
                 className="form-control"
-                value=""
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -23,7 +62,8 @@ const NewPassword = () => {
                 type="password"
                 id="confirm_password_field"
                 className="form-control"
-                value=""
+                value={passwordConfirm}
+                onChange={(e) => setPasswordCofirm(e.target.value)}
               />
             </div>
 
