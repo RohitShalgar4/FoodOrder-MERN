@@ -29,7 +29,7 @@ export default function CountRestaurant() {
              : "Restaurants" 
              : count === 1 
              ? "Restaurant" 
-             : "Resataurants"
+             : "Restaurants"
           }
         </span>
         </p>
