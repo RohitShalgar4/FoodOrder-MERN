@@ -2,7 +2,7 @@ import React from 'react'
 import { useAlert } from 'react-alert';
 import { LiaRupeeSignSolid } from "react-icons/lia";
 
-export default function FoodItem({fooditem}) {
+export default function FoodItem({fooditem, restaurant}) {
 
     const alert = useAlert();
   return <div className='col-sm-12 col-md-6 col-lg-3 my-3'>
@@ -31,9 +31,9 @@ export default function FoodItem({fooditem}) {
                 </button>
                 <br />
                 <p>
-                    Status:{' '}
+                    Status:{" "}
                     <span
-                        id='stock_status'
+                        id="stock_status"
                         className= {fooditem.stock ? "greenColor" : "redColor"}
                     >
                         {fooditem.stock ? "In Stock" : "Out of Stock"}
