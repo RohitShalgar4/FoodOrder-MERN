@@ -10,7 +10,8 @@ export default function Header() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.auth);
-  
+  const { cartItems } = useSelector((state) => state.cart);
+
   const logoutHandler = () => {
     dispatch(logout());
     alert.success("Logged Out Successfully");
@@ -29,12 +30,14 @@ export default function Header() {
         <Search />
       </div>
       <div className='col-12 col-md-3 mt-4 mt-md-0'>
-        <span className='ml-3' id='cart'>
+        <Link to={"/cart"} style={{textDecoration: "none" }}>
+          <span className='ml-3' id='cart'>
             Cart
-        </span>
-        <span className='ml-1' id='cart_count'>
-            0
-        </span>
+          </span>
+          <span className='ml-1' id='cart_count'>
+            {cartItems.length}
+          </span>
+        </Link>
         {
             user ? (
                 <>
