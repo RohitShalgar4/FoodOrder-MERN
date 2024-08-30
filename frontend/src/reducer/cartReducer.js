@@ -26,6 +26,11 @@ export const cartReducer = (
             if (action.payload.cart === undefined) {
                 return {
                     ...state,
+                    cartItems: [],
+                };
+            } else {
+                return {
+                    ...state,
                     cartItems: action.payload.cart.items,
                 };
             }
