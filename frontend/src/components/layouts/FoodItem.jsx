@@ -53,7 +53,7 @@ export default function FoodItem({fooditem, restaurant}) {
 
     const addToCartHandler = () => {
         if (!isAuthenticated && !user) {
-            return navigate("/user/login");
+            return navigate("/users/login");
         }
         if (fooditem && fooditem._id) {
             dispatch(addItemToCart(fooditem._id, restaurant, quantity, alert));
