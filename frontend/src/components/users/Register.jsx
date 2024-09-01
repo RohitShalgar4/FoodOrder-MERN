@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {useAlert} from "react-alert";
+import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearErrors ,register} from "../../actions/userAction";
+import { clearErrors, register } from "../../actions/userAction";
+
 const Register = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -182,6 +183,5 @@ const Register = () => {
     </>
   );
 };
-
 
 export default Register;
