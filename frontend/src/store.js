@@ -10,6 +10,7 @@ import {
  import { menuReducer } from "./reducer/menuReducer";
  import { authReducer, forgotPasswordReducer, userReducer } from "./reducer/userReducer";
 import { cartReducer } from "./reducer/cartReducer";
+import { myOrderReducer, newOrderReducer, orderDetailsReducer } from "./reducer/orderReducer";
 
  const reducer = combineReducers({
     restaurants: restaurantReducer,
@@ -18,6 +19,9 @@ import { cartReducer } from "./reducer/cartReducer";
     user: userReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
+    newOrder: newOrderReducer,
+    myOrders: myOrderReducer,
+    orderDetails: orderDetailsReducer,
 });
 
 const composeenhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
