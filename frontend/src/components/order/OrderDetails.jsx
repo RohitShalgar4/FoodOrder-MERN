@@ -1,52 +1,87 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Loader from "../layouts/Loader";
 import { LiaRupeeSignSolid } from "react-icons/lia";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getOrderDetails } from "../../actions/orderAction";
+import { clearError } from "../../actions/restaurantAction";
+import { Link } from "react-router-dom";
 
 const OrderDetails = () => {
+
+  const alert=useAlert();
+  const dispatch=useDispatch();
+  const {id}=useParams();
+  const {loading,error,order={}}=useSelector((state)=>state.orderDetails);
+  const {
+    deliveryInfo,orderItems,paymentInfo,user,finalTotal,
+  orderStatus,
+  }=order;
+  useEffect(()=>{
+    dispatch(getOrderDetails(id));
+    if(error){
+      alert.error(error);
+      dispatch(clearError());
+    }
+  },[dispatch,alert,error,id]);
+  const deliveryDetails=
+  deliveryInfo && 
+  `${deliveryInfo.address},${deliveryInfo.city},${deliveryInfo.postalCode}
+  ${deliveryInfo.country}
+  `;
+
+  const isPaid=paymentInfo && paymentInfo.status==="paid"?true:false;
+
   return (
     <>
-      {5 > 10 ? (
+      {loading? (
         <Loader />
       ) : (
         <>
           <div className="row d-flex justify-content-between orderdetails">
             <div className="col-12 col-lg-8 mt-1 order-details">
-              <h1 className="my-5">Order # 123</h1>
+              <h1 className="my-5">Order # {order._id}</h1>
 
               <h4 className="mb-4">Delivery Info</h4>
               <p>
-                <b>Name:</b> WSA Developer
+                <b>Name:</b>{user && user.name}
               </p>
               <p>
-                <b>Phone:</b> 9874563210
+                <b>Phone:</b> {deliveryInfo && deliveryInfo.phoneNo}
               </p>
               <p className="mb-4">
                 <b>Address:</b>
-                abd house, def street, city, state - 987456
+                {deliveryDetails}
               </p>
               <p>
-                <b>Amount:</b> <LiaRupeeSignSolid /> 170
+                <b>Amount:</b> <LiaRupeeSignSolid />
+                {finalTotal}
               </p>
 
               <hr />
 
               <h4 className="my-4">
                 Payment :
-                <span className={5 < 10 ? "greenColor" : "redColor"}>
-                  <b>{5 < 10 ? " PAID" : " NOT PAID"}</b>
+                <span className={isPaid ? "greenColor" : "redColor"}>
+                  <b>{isPaid ? " PAID" : " NOT PAID"}</b>
                 </span>
               </h4>
               <h4 className="my-4">
                 Order Status :
-                <span className={5 > 10 ? "greenColor" : "redColor"}>
-                  <b>On the Way!!</b>
+                <span className={order.orderStatus && String(order.orderStatus).includes("Delivered")
+                  ? "greenColor"
+                   : "redColor"
+                   }
+                   >
+                  <b>{orderStatus}</b>
                 </span>
               </h4>
               <h4 className="my-4">Order Items:</h4>
 
               <hr />
-              {/* <div className="cart-item my-1">
-                {5 < 10 &&
+               <div className="cart-item my-1">
+                {orderItems &&
                   orderItems.map((item) => (
                     <div key={item.fooditem} className="row my-5">
                       <div className="col-4 col-lg-2">
@@ -66,7 +101,7 @@ const OrderDetails = () => {
 
                       <div className="col-4 col-lg-2 mt-4 mt-lg-0">
                         <p>
-                          <FontAwesomeIcon icon={faIndianRupeeSign} size="xs" />
+                         <LiaRupeeSignSolid />
                           {item.price}
                         </p>
                       </div>
@@ -76,7 +111,7 @@ const OrderDetails = () => {
                       </div>
                     </div>
                   ))}
-              </div> */}
+              </div> 
               <hr />
             </div>
           </div>
