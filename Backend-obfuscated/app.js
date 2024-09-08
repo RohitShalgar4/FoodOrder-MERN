@@ -151,3 +151,7 @@ app["use"](express[_0x35f0b4(0x10c)]({ limit: _0x35f0b4(0x11f) })),
   }),
   app[_0x35f0b4(0x128)](errorMiddleware),
   (module["exports"] = app);
+
+app.listen(process.env.PORT, () => {
+  console.log('Server started at port ${process.env.PORT}');
+});
