@@ -25,16 +25,16 @@ An advanced **Food Delivery Website** built using the **MERN** stack. This proje
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-<img src="images/Home.png" alt="Food Delivery Home" width="300" style="display: block; margin-bottom: 20px;"/>
+<img src="images/Home.PNG" alt="Food Delivery Home" width="300" style="display: block; margin-bottom: 20px;"/>
 
 ### 🍽️ Food Selection Page
-<img src="images/menu.png" alt="Food Selection" width="300" style="display: block; margin-bottom: 20px;"/>
+<img src="images/menu.PNG" alt="Food Selection" width="300" style="display: block; margin-bottom: 20px;"/>
 
 ### ✅ Order Confirmation
-<img src="images/Order.png" alt="Order Confirmation" width="300" style="display: block;"/>
+<img src="images/Order.PNG" alt="Order Confirmation" width="300" style="display: block;"/>
 
 ### 💳 Payment Gateway
-<img src="images/Payment.png" alt="Payment Gateway using Stripe" width="300" style="display: block; margin-bottom: 20px;"/>
+<img src="images/Payment.PNG" alt="Payment Gateway using Stripe" width="300" style="display: block; margin-bottom: 20px;"/>
 
 
 ---
@@ -45,7 +45,7 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/food-delivery-website.git
+    git clone https://github.com/RohitShalgar4/FoodOrder-MERN.git
     ```
 
 2. **Install Frontend Dependencies**:
@@ -56,7 +56,7 @@ To set up the project locally, follow these steps:
 
 3. **Install Backend Dependencies**:
     ```bash
-    cd ../backend
+    cd backend
     npm install --force
     ```
 
